@@ -11,6 +11,12 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
+  <description>
+    <![CDATA[
+    http://codingdojo.org/cgi-bin/wiki.pl?KataBankOCR
+    ]]>
+  </description>
+
   <artifactId>lcd-to-number</artifactId>
 
   <dependencies>

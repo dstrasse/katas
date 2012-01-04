@@ -10,11 +10,6 @@
   <packaging>pom</packaging>
 
   <name>katas</name>
-  <description>
-    <![CDATA[
-    http://codingdojo.org/cgi-bin/wiki.pl?KataBankOCR
-    ]]>
-  </description>
 
   <modules>
     <module>lcd-to-number</module>

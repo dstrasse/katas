@@ -1,5 +1,6 @@
 import org.omg.CORBA.PRIVATE_MEMBER;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +24,7 @@ public class LcdToNumber {
 
     switch (lineNr) {
       case 1 : return parseFirstLine(line);
+      case 2 : return parseSecondLine(line);
     }
     return null;
   }
@@ -38,7 +40,8 @@ public class LcdToNumber {
   }
 
   private static List<Integer> parseSecondLine(String line) {
-    List<Integer> numbersList = Arrays.asList(0,1,2,3,4,5,6,7,8,9);
+    // ArrayList required here as instance because AbstractList does not support removeAll
+    List<Integer> numbersList = new ArrayList<Integer> (Arrays.asList(0,1,2,3,4,5,6,7,8,9));
     switch (line.charAt(0)) {
       case ' ':
         numbersList.removeAll(Arrays.asList(0, 4, 5, 6, 8, 9));
@@ -51,11 +54,11 @@ public class LcdToNumber {
         break;
       case '_': numbersList.removeAll(Arrays.asList(0,1,7));
     }
-    switch (line.charAt(3)) {
+    switch (line.charAt(2)) {
       case ' ':
-        numbersList.removeAll(Arrays.asList(1,2,3,4,7,8,9));
+        numbersList.removeAll(Arrays.asList(0,1,2,3,4,7,8,9));
         break;
-      case '|': numbersList.removeAll(Arrays.asList(5,6,0));
+      case '|': numbersList.removeAll(Arrays.asList(5,6));
     }
 
     return numbersList;
