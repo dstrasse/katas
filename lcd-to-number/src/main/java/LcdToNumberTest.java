@@ -53,9 +53,23 @@ public class LcdToNumberTest {
     assertThat(Arrays.asList(0), is(equalTo(LcdToNumber.parseLine("| |", 2))));
   }
 
+  @Test
   public void testParseThirdLine() {
      // check
-    // '  |'  -> 1, 7
+    // '  |'  ->    1, 4, 7
+    assertThat(Arrays.asList(1,4,7), is(equalTo(LcdToNumber.parseLine("  |", 3))));
+    // '  _|' ->    3, 5, 9
+    assertThat(Arrays.asList(3,5,9), is(equalTo(LcdToNumber.parseLine(" _|", 3))));
+    // '|_|'  ->    6, 8
+    assertThat(Arrays.asList(0,6,8), is(equalTo(LcdToNumber.parseLine("|_|", 3))));
+    // ' _ '  ->    x
+    assertThat(new ArrayList<Integer>(0), is(equalTo(LcdToNumber.parseLine(" _ ", 3))));
+    // '|_ '  ->    2
+    assertThat(Arrays.asList(2), is(equalTo(LcdToNumber.parseLine("|_ ", 3))));
+    // '|  '  ->    x
+    assertThat(new ArrayList<Integer>(0), is(equalTo(LcdToNumber.parseLine("|  ", 3))));
+    // '| |'  ->    x
+    assertThat(new ArrayList<Integer>(0), is(equalTo(LcdToNumber.parseLine("| |", 3))));
   }
 
 }
