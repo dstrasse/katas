@@ -1,9 +1,11 @@
+import org.apache.commons.collections.ListUtils;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,7 +19,19 @@ public class LcdToNumber {
   //static int[] numbers = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   public static int parseDigit(String lcdDigit) {
-    return 1;
+    List<Integer> numbersList = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
+    Scanner s = new Scanner(lcdDigit);
+    List<Integer> matchingNumbersFirstLine = parseFirstLine(s.nextLine());
+    List<Integer> matchingNumbersSecondLine = parseSecondLine(s.nextLine());
+    List<Integer> matchingNumbersThirdLine = parseThirdLine(s.nextLine());
+
+    List<Integer> intersection = ListUtils.intersection(numbersList, matchingNumbersFirstLine);
+    intersection = ListUtils.intersection(intersection, matchingNumbersSecondLine);
+    intersection = ListUtils.intersection(intersection, matchingNumbersThirdLine);
+
+    assert intersection.size() == 1;
+
+    return intersection.get(0);
   }
 
   protected static List<Integer> parseLine(String line, int lineNr) {
