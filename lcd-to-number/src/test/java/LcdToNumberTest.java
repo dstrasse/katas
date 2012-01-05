@@ -75,6 +75,11 @@ public class LcdToNumberTest {
     assertThat(Arrays.asList(1, 4), is(equalTo(LcdToNumber.parseLine("   ", 1))));
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testParseFirstLineError() throws Exception {
+    LcdToNumber.parseLine(" a ", 1);
+  }
+
   @Test
   public void testParseSecondLine() {
     // check
@@ -94,6 +99,21 @@ public class LcdToNumberTest {
     assertThat(Arrays.asList(0), is(equalTo(LcdToNumber.parseLine("| |", 2))));
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testParseSecondLineFirstCharError() throws Exception {
+    LcdToNumber.parseLine("a  ", 2);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testParseSecondLineSecondCharError() throws Exception {
+    LcdToNumber.parseLine(" a ", 2);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testParseSecondLineThirdCharError() throws Exception {
+    LcdToNumber.parseLine("  a", 2);
+  }
+
   @Test
   public void testParseThirdLine() {
     // check
@@ -111,6 +131,26 @@ public class LcdToNumberTest {
     assertThat(new ArrayList<Integer>(0), is(equalTo(LcdToNumber.parseLine("|  ", 3))));
     // '| |'  ->    x
     assertThat(new ArrayList<Integer>(0), is(equalTo(LcdToNumber.parseLine("| |", 3))));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testParseThirdLineFirstCharError() throws Exception {
+    LcdToNumber.parseLine("a  ", 3);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testParseThirdLineSecondCharError() throws Exception {
+    LcdToNumber.parseLine(" a ", 3);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testParseThirdLineThirdCharError() throws Exception {
+    LcdToNumber.parseLine("  a", 3);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testParseInvalidLineNr() throws Exception {
+    LcdToNumber.parseLine("  a", 4);
   }
 
   @Test
