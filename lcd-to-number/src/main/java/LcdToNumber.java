@@ -16,8 +16,6 @@ import java.util.Scanner;
  */
 public class LcdToNumber {
 
-  //static int[] numbers = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-
   public static int parseDigit(String lcdDigit) {
     List<Integer> numbersList = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
     Scanner s = new Scanner(lcdDigit);
