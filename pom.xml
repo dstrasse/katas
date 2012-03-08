@@ -13,6 +13,8 @@
 
   <modules>
     <module>lcd-to-number</module>
+    <module>word-wrap</module>
+    <module>berlin-clock</module>
   </modules>
 
   <dependencyManagement>
