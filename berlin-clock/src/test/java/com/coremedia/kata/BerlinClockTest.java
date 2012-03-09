@@ -167,22 +167,22 @@ public class BerlinClockTest {
     assertArrayEquals(new String[]{"Y", "RRRR", "RRRR", "OOOOOOOOOOO", "OOOO"}, BerlinClock.transformTime("24:00:00"));
   }
 
-  @Test(expected = ParseException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testInvalidTimeFormat1() throws Exception {
     BerlinClock.transformTime("12:33");
   }
 
-  @Test(expected = ParseException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testInvalidTimeFormat2() throws Exception {
     BerlinClock.transformTime("abc");
   }
 
-  @Test(expected = ParseException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testInvalidTimeFormat3() throws Exception {
     BerlinClock.transformTime("25:00:00");
   }
 
-  @Test(expected = ParseException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testInvalidTimeFormat4() throws Exception {
     BerlinClock.transformTime("12:61:00");
   }

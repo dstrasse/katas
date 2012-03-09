@@ -2,8 +2,11 @@ package com.coremedia.kata; /**
  * Copyright (c) 2012 CoreMedia AG, Hamburg. All rights reserved.
  */
 
+import org.apache.commons.validator.routines.TimeValidator;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * Unit test for {@link BerlinClock}
@@ -28,8 +31,9 @@ public class BerlinClock {
   }
 
   private static void verifyFormat(String time) throws ParseException {
-    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-    sdf.parse(time);
+    if (TimeValidator.getInstance().validate(time, "HH:mm:ss", Locale.forLanguageTag("de-DE")) == null && !time.equals("24:00:00")) {
+      throw new IllegalArgumentException("Cannot parse time " + time);
+    }
   }
 
   private static String getFiveHoursLamps(String hoursString) {
