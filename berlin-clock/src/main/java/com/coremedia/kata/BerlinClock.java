@@ -24,9 +24,10 @@ public class BerlinClock {
     verifyFormat(time);
 
     // retrieve hours
-    String hours = time.substring(0, time.indexOf(':'));
-    String minutes = time.substring(time.indexOf(':') + 1, time.lastIndexOf(':'));
-    String seconds = time.substring(time.lastIndexOf(':') + 1);
+    String[] timeComponents = time.split(":");
+    int  hours = Integer.parseInt(timeComponents[0]);
+    int  minutes =  Integer.parseInt(timeComponents[1]);
+    int  seconds =  Integer.parseInt(timeComponents[2]);
     return new String[]{getSeconsLamp(seconds), getFiveHoursLamps(hours), getOneHourLamps(hours), getFiveMinutesLamps(minutes), getOneMinuteLamps(minutes)};
   }
 
@@ -36,9 +37,8 @@ public class BerlinClock {
     }
   }
 
-  private static String getFiveHoursLamps(String hoursString) {
+  private static String getFiveHoursLamps(int hours) {
     StringBuilder result = new StringBuilder("OOOO");
-    int hours = Integer.parseInt(hoursString);
 
     for (int i = 0; i < (hours / 5); i++) {
       result.replace(i, i + 1, "R");
@@ -46,9 +46,8 @@ public class BerlinClock {
     return result.toString();
   }
 
-  private static String getOneHourLamps(String hoursString) {
+  private static String getOneHourLamps(int hours) {
     StringBuilder result = new StringBuilder("OOOO");
-    int hours = Integer.parseInt(hoursString);
 
     for (int i = 0; i < (hours % 5); i++) {
       result.replace(i, i + 1, "R");
@@ -56,9 +55,8 @@ public class BerlinClock {
     return result.toString();
   }
 
-  private static String getFiveMinutesLamps(String minutesString) {
+  private static String getFiveMinutesLamps(int minutes) {
     StringBuilder result = new StringBuilder("OOOOOOOOOOO");
-    int minutes = Integer.parseInt(minutesString);
 
     for (int i = 0; i < (minutes / 5); i++) {
       if ((i + 1) % 3 == 0) {
@@ -70,9 +68,8 @@ public class BerlinClock {
     return result.toString();
   }
 
-  private static String getOneMinuteLamps(String minutesString) {
+  private static String getOneMinuteLamps(int minutes) {
     StringBuilder result = new StringBuilder("OOOO");
-    int minutes = Integer.parseInt(minutesString);
 
     for (int i = 0; i < (minutes % 5); i++) {
       result.replace(i, i + 1, "Y");
@@ -80,8 +77,7 @@ public class BerlinClock {
     return result.toString();
   }
 
-  private static String getSeconsLamp(String secondsAsString) {
-    int seconds = Integer.parseInt(secondsAsString);
+  private static String getSeconsLamp(int seconds) {
     if (seconds % 2 == 0) {
       return "Y";
     }
