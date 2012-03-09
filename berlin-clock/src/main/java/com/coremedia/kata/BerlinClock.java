@@ -2,6 +2,9 @@ package com.coremedia.kata; /**
  * Copyright (c) 2012 CoreMedia AG, Hamburg. All rights reserved.
  */
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 /**
  * Unit test for {@link BerlinClock}
  */
@@ -14,14 +17,19 @@ public class BerlinClock {
    * @param time The time to transform in the format HH:mm:ss
    * @return The time in the Berlin Clock format.
    */
-  public static String[] transformTime(String time) {
-    // TODO verify time format
+  public static String[] transformTime(String time) throws ParseException {
+    verifyFormat(time);
 
     // retrieve hours
     String hours = time.substring(0, time.indexOf(':'));
     String minutes = time.substring(time.indexOf(':') + 1, time.lastIndexOf(':'));
     String seconds = time.substring(time.lastIndexOf(':') + 1);
     return new String[]{getSeconsLamp(seconds), getFiveHoursLamps(hours), getOneHourLamps(hours), getFiveMinutesLamps(minutes), getOneMinuteLamps(minutes)};
+  }
+
+  private static void verifyFormat(String time) throws ParseException {
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+    sdf.parse(time);
   }
 
   private static String getFiveHoursLamps(String hoursString) {
@@ -67,7 +75,7 @@ public class BerlinClock {
     }
     return result.toString();
   }
-  
+
   private static String getSeconsLamp(String secondsAsString) {
     int seconds = Integer.parseInt(secondsAsString);
     if (seconds % 2 == 0) {
