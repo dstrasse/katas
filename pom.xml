@@ -15,6 +15,7 @@
     <module>lcd-to-number</module>
     <module>word-wrap</module>
     <module>berlin-clock</module>
+    <module>red-pencil</module>
   </modules>
 
   <dependencyManagement>
@@ -33,6 +34,11 @@
         <groupId>commons-validator</groupId>
         <artifactId>commons-validator</artifactId>
         <version>1.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.joda</groupId>
+        <artifactId>joda-money</artifactId>
+        <version>0.6</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
