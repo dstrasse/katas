@@ -77,5 +77,25 @@ public class GameOfLife {
     return result.toString();
   }
 
+  public static void main(String[] args) {
+    String field =  "....\n" +
+            "....\n" +
+            ".***\n" +
+            "....\n";
+
+    String planetOfDeath =  "....\n" +
+            "....\n" +
+            "....\n" +
+            "....\n";
+
+    GameOfLife gol = new GameOfLife(field);
+    String result = "";
+    do {
+      gol.next();
+      result = gol.toString();
+      System.out.println(result);
+    } while (!result.equals(planetOfDeath));
+  }
+
 
 }
