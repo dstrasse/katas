@@ -16,6 +16,7 @@
     <module>word-wrap</module>
     <module>berlin-clock</module>
     <module>red-pencil</module>
+    <module>game-of-life</module>
   </modules>
 
   <dependencyManagement>
