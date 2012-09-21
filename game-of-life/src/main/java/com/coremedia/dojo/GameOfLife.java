@@ -78,12 +78,12 @@ public class GameOfLife {
   }
 
   public static void main(String[] args) {
-    String field =  "....\n" +
+    String field = "....\n" +
             "....\n" +
             ".***\n" +
             "....\n";
 
-    String planetOfDeath =  "....\n" +
+    String planetOfDeath = "....\n" +
             "....\n" +
             "....\n" +
             "....\n";
